@@ -60,7 +60,7 @@ db.close()
         </Row>
         <Row className="mb-5 d-flex justify-content-center">
           <Col md={2} className="text-center">
-            <img src="/ccccc.png"/>
+            <img src="/ccccc.png" alt=''/>
           </Col>
         </Row>
         <Row>
