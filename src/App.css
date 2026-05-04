@@ -3,12 +3,10 @@
   background: linear-gradient(135deg, #0f172a, #1e293b);
 }
 
-/* Card */
 .project-card {
   border-radius: 6px;
 }
 
-/* Botón GitHub */
 .github-btn {
   display: inline-flex;
   align-items: center;
