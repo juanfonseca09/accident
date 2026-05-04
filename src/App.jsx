@@ -1,27 +1,6 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export default function App() {
-
-  const code = `
-data = pd.read_csv("fallecidos-nueva-2019.csv", encoding="latin-1")
-data.columns = data.columns.str.strip().str.upper()
-data["FECHAYHORA"] = pd.to_datetime(data["FECHAYHORA"], errors="coerce")
-data["mes"] = data["FECHAYHORA"].dt.month
-data["hora"] = data["FECHAYHORA"].dt.hour
-db = sqlite3.connect("fallecidos.db")
-data.to_sql("fallecidos", db, if_exists="replace", index=False)
-consulta = """
-SELECT mes, COUNT(*) as total
-FROM fallecidos
-GROUP BY mes
-ORDER BY mes
-"""
-res = pd.read_sql(consulta, db)
-db.close()
-`;
-
   return (
     <div>
       <Container className="py-5">
@@ -61,17 +40,6 @@ db.close()
         <Row className="mb-5 d-flex justify-content-center">
           <Col md={2} className="text-center">
             <img src="/ccccc.png" alt=''/>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Card className="shadow-sm border-0">
-              <Card.Body>
-                <SyntaxHighlighter language="python" style={oneDark}>
-                  {code}
-                </SyntaxHighlighter>
-              </Card.Body>
-            </Card>
           </Col>
         </Row>
       </Container>
