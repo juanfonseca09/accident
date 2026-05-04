@@ -1,47 +1,67 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import { FaGithub } from "react-icons/fa";
+import "./App.css";
 
 export default function App() {
   return (
-    <div>
+    <div className="app-bg">
       <Container className="py-5">
-        <Row className="mb-5 text-center">
+
+        {/* HEADER */}
+        <Row className="mb-5 text-center text-white">
           <Col>
             <h1 className="fw-bold text-uppercase">
               Análisis de Siniestros de Tránsito
             </h1>
           </Col>
         </Row>
+
+        {/* CONTENIDO */}
         <Row className="mb-4 justify-content-center">
           <Col md={8}>
-            <Card className="shadow-sm border-0">
+            <Card className="project-card shadow-sm border-0">
               <Card.Body>
+
                 <p className="text-muted">
-                  Este proyecto lo hice para analizar datos de fallecidos en siniestros de tránsito en Uruguay y tratar de entender si había algún patrón claro en los datos.
+                  Este proyecto analiza datos de fallecidos en siniestros de tránsito en Uruguay para identificar patrones temporales y geográficos.
                 </p>
+
                 <p className="text-muted">
-                  Primero cargué el dataset y armé algunas columnas como mes y hora a partir de la fecha, después usé SQLite para hacer consultas simples y agrupar la información, y con eso generé los gráficos.
+                  Se realizó limpieza de datos, transformación de variables y consultas con SQLite para agrupar la información y generar visualizaciones.
                 </p>
+
                 <p className="text-muted">
-                  Mirando los resultados se ven algunas cosas interesantes, por ejemplo, hay un pico bastante claro hacia fin de año, con diciembre siendo el mes con más casos y también aparecen valores relativamente altos en marzo, abril y junio.
+                  Se identifican picos hacia fin de año, mayor concentración en Montevideo y Canelones, y mayor incidencia en horarios de la tarde-noche.
                 </p>
-                <p className="text-muted">
-                  A nivel geográfico, Montevideo y Canelones concentran la mayor cantidad de fallecidos, lo cual tiene bastante sentido por la cantidad de población y movimiento que tienen.
+
+                <p className="text-muted mb-3">
+                  También se observa una diferencia marcada por sexo, con predominio de casos en hombres.
                 </p>
-                <p className="text-muted">
-                  En cuanto a horarios, los valores más altos están en la tarde-noche, especialmente entre las 18 y las 20 horas, que coincide con momentos de mayor circulación y también hay algunos picos más chicos en la madrugada.
-                </p>
-                <p className="text-muted mb-0">
-                  Por último, la diferencia por sexo es bastante marcada, con una mayoría clara de hombres sobre mujeres, en general, la idea fue más entender cómo se comportan los datos que hacer algo complejo.
-                </p>
+
+                {/* BOTÓN GITHUB */}
+                <a
+                  href="link.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="github-btn"
+                >
+                  <FaGithub style={{ marginRight: "6px" }} />
+                  Ver código
+                </a>
+
               </Card.Body>
             </Card>
           </Col>
         </Row>
+
+        {/* IMAGEN */}
         <Row className="mb-5 d-flex justify-content-center">
-          <Col md={2} className="text-center">
-            <img src="/ccccc.png" alt=''/>
+          <Col md={3} className="text-center">
+            <img src="/ccccc.png" alt="grafico" className="img-fluid rounded" />
           </Col>
         </Row>
+
       </Container>
     </div>
   );

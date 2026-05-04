@@ -8,43 +8,60 @@ df["FECHAYHORA"] = pd.to_datetime(df["FECHAYHORA"], errors="coerce")
 df["MES"] = df["FECHAYHORA"].dt.month
 df["HORA"] = df["FECHAYHORA"].dt.hour
 
-conn = sqlite3.connect("fallecidos.db")
-df.to_sql("fallecidos", conn, if_exists="replace", index=False)
-query_mes = """
+cn = sqlite3.connect("fallecidos.db")
+df.to_sql("fallecidos", cn, if_exists="replace", index=False)
+
+df_mes = pd.read_sql("""
 SELECT MES, COUNT(*) as total
 FROM fallecidos
 GROUP BY MES
 ORDER BY MES
-"""
-df_mes = pd.read_sql(query_mes, conn)
-query_dep = """
+""", cn)
+
+df_dep = pd.read_sql("""
 SELECT DEPARTAMENTO, COUNT(*) as total
 FROM fallecidos
 GROUP BY DEPARTAMENTO
 ORDER BY total DESC
-"""
-df_dep = pd.read_sql(query_dep, conn)
-query_hora = """
+""", cn)
+
+df_hora = pd.read_sql("""
 SELECT HORA, COUNT(*) as total
 FROM fallecidos
 GROUP BY HORA
 ORDER BY HORA
-"""
-df_hora = pd.read_sql(query_hora, conn)
-query_sexo = """
+""", cn)
+
+df_sexo = pd.read_sql("""
 SELECT SEXO, COUNT(*) as total
 FROM fallecidos
 GROUP BY SEXO
-"""
-df_sexo = pd.read_sql(query_sexo, conn)
+""", cn)
 
-print("\nFallecidos por mes:")
-print(df_mes)
-print("\nTop departamentos:")
-print(df_dep.head())
-print("\nFallecidos por hora:")
-print(df_hora)
-print("\nFallecidos por sexo:")
-print(df_sexo)
+cn.close()
 
-conn.close()
+plt.figure()
+plt.plot(df_mes["MES"], df_mes["total"])
+plt.title("Fallecidos por mes")
+plt.savefig("mes.png")
+plt.close()
+
+top_dep = df_dep.head(10)
+plt.figure()
+plt.bar(top_dep["DEPARTAMENTO"], top_dep["total"])
+plt.xticks(rotation=45)
+plt.title("Top departamentos")
+plt.savefig("departamentos.png")
+plt.close()
+
+plt.figure()
+plt.plot(df_hora["HORA"], df_hora["total"])
+plt.title("Fallecidos por hora")
+plt.savefig("hora.png")
+plt.close()
+
+plt.figure()
+plt.bar(df_sexo["SEXO"], df_sexo["total"])
+plt.title("Fallecidos por sexo")
+plt.savefig("sexo.png")
+plt.close()
