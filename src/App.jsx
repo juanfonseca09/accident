@@ -25,6 +25,9 @@ export default function App() {
                   Primero cargué el dataset y armé algunas columnas como mes y hora a partir de la fecha, después usé SQLite para hacer consultas simples y agrupar la información, y con eso generé los gráficos.
                 </p>
                 <p className="text-muted">
+                  Además, desarrollé un dashboard interactivo en Power BI para visualizar los datos de forma más dinámica, agregando KPIs, filtros y análisis por mes, departamento, sexo y horario.
+                </p>
+                <p className="text-muted">
                   Mirando los resultados se ven algunas cosas interesantes, por ejemplo, hay un pico bastante claro hacia fin de año, con diciembre siendo el mes con más casos y también aparecen valores relativamente altos en marzo, abril y junio.
                 </p>
                 <p className="text-muted">

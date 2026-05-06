@@ -40,28 +40,7 @@ GROUP BY SEXO
 
 cn.close()
 
-plt.figure()
-plt.plot(df_mes["MES"], df_mes["total"])
-plt.title("Fallecidos por mes")
-plt.savefig("mes.png")
-plt.close()
-
-top_dep = df_dep.head(10)
-plt.figure()
-plt.bar(top_dep["DEPARTAMENTO"], top_dep["total"])
-plt.xticks(rotation=45)
-plt.title("Top departamentos")
-plt.savefig("departamentos.png")
-plt.close()
-
-plt.figure()
-plt.plot(df_hora["HORA"], df_hora["total"])
-plt.title("Fallecidos por hora")
-plt.savefig("hora.png")
-plt.close()
-
-plt.figure()
-plt.bar(df_sexo["SEXO"], df_sexo["total"])
-plt.title("Fallecidos por sexo")
-plt.savefig("sexo.png")
-plt.close()
+df_mes.to_csv("fallecidos_por_mes.csv", index=False)
+df_dep.to_csv("fallecidos_por_departamento.csv", index=False)
+df_hora.to_csv("fallecidos_por_hora.csv", index=False)
+df_sexo.to_csv("fallecidos_por_sexo.csv", index=False)
